@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+
+var PORT = 3001;
+var PORT_HTTPS = 3000;
+var fs = require("fs");
+var http = require("http");
+var https = require("https");
+
+var credentials = {key: fs.readFileSync("./etc/myserver.key", "utf8"),
+                   cert: fs.readFileSync("./etc/myserver.crt", "utf8")}
+
+var httpserver = http.createServer(app),
+    httpsserver = https.createServer(credentials, app);
+
+httpserver.listen(PORT);
+httpsserver.listen(PORT_HTTPS);
