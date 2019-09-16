@@ -15,10 +15,10 @@ module.exports = function(app){
     })
 
     passport.use(new FacebookStrategy({
-        clientID: "325421134865746",
-        clientSecret: "6631760d1eb210032048f8fcc1646c30",
+        clientID: "2373348552982692",
+        clientSecret: "3f5bc868c8b3f5e9dd8665741d72f0fa",
         callbackURL: "https://localhost:3000/auth/facebook/callback",
-        profileFields: ["id", "email", "displayName", "photos"],
+        profileFields: ["id", "email", "displayName", "photos", "birthday","gender"],
         passReqToCallback: true
     },
     function (req, accessToken, refreshToken, profile, done){
@@ -29,7 +29,7 @@ module.exports = function(app){
         user.facebook = {};
         user.facebook.id = profile.id;
         user.facebook.token = accessToken;
-
+        console.log(profile._json);
         done(null, user);
     }
 

@@ -13,7 +13,8 @@ var session = require("express-session");
 
 var app = express();
 
-app.use(session({secret: "catsarecool"}));
+app.use(session({secret: "catsarecool",     resave: true,     saveUninitialized: true
+}));
 require("./config/passport")(app);
 
 
